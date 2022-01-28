@@ -88,6 +88,17 @@ class QuanLyBaiViet extends Controller
     }
     public function delete_baiviet($baiviet_id){
         $this->AuthLogin();
+        $get_hinh = DB::table('tbl_hinhanh')->where('id_baiviet',$baiviet_id)->get();
+        foreach($get_hinh as $img)
+        {
+        $link ='public/upload/baiviet/'.$img->hinh;
+        if(File::exists($link))
+        {
+            File::delete($link);
+            
+        }
+         }
+        DB::table('tbl_hinhanh')->where('id_baiviet',$baiviet_id)->delete();
         DB::table('tbl_baiviet')->where('baiviet_id',$baiviet_id)->delete();
         Session::put('message','Xóa bài viết thành công');
         return Redirect::to('all-baiviet');

@@ -197,13 +197,35 @@ Start About Section
         <!-- End of .col-sm-3 -->
 
 
-        <div class="col-sm-4 col-md-4 col-lg-4">
+        {{-- <div class="col-sm-4 col-md-4 col-lg-4">
           <ul>
             <li><h3>Connect with Facebook</h3></li>
             <li><a href="#">Facebook</a></li>
             <li><a href="#">Twitter</a></li>
           </ul>
+        </div> --}}
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <ul>
+            <li>
+            <button  onclick="show1()">Trụ sở chính</button>
+            <button onclick="show2()">Quận 7</button>
+            <button onclick="show3()">Quận 7</button>
+            </li>
+  
+            <div id="map1" style="width:200px;height:200px;">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.9540678643425!2d106.67567691480046!3d10.738023592347597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fad027e3727%3A0x2a77b414e887f86d!2zMTgwIMSQLiBDYW8gTOG7lywgUGjGsOG7nW5nIDQsIFF14bqtbiA4LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1sen!2s!4v1642402302996!5m2!1sen!2s" 
+							width="200px" height="100px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+             
+						</div>
+            <div id="map2" style="display: none">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5662846491814!2d106.68416721428704!3d10.767870962297255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fe0fc9241f1%3A0xe7b114042b40ad11!2zMTcwIELDuWkgVGjhu4sgWHXDom4sIFBoxrDhu51uZyBQaOG6oW0gTmfFqSBMw6NvLCBRdeG6rW4gMSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1643359476521!5m2!1sen!2s" 	width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div id="map3" style="display: none">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6752602435636!2d106.67791001428681!3d10.759491462449397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1cefa4b079%3A0x5b05cd310facba83!2zMjIzIFRy4bqnbiBCw6xuaCBUcuG7jW5nLCBQaMaw4budbmcgMywgUXXhuq1uIDUsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1643363082469!5m2!1sen!2s" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <div>
+          </ul>
         </div>
+        
         <!-- End of .col-sm-3 -->
 
       </div>
@@ -249,6 +271,8 @@ Start About Section
     
     <!-- Custom js -->
     <script src="{{asset('public/frontend/js/script.js')}}"></script>
-
+     
   </body>
   </html>
+
+  

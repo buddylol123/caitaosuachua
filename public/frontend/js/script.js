@@ -193,5 +193,33 @@
   $(window).scroll(function () {
     counter();
   });
+// -----------------------------
+  //  map
+  // -----------------------------
+
+
+
 
 })(jQuery);
+
+function show1()
+{
+  document.getElementById('map1').style.display="block";
+  document.getElementById('map2').style.display="none";
+  document.getElementById('map3').style.display="none";
+ 
+}
+function show2()
+{
+  document.getElementById('map1').style.display="none";
+  document.getElementById('map2').style.display="block";
+  document.getElementById('map3').style.display="none";
+ 
+}
+function show3()
+{
+  document.getElementById('map1').style.display="none";
+  document.getElementById('map2').style.display="none";
+  document.getElementById('map3').style.display="block";
+ 
+}
