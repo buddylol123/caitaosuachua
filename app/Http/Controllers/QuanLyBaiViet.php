@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File;
@@ -33,9 +34,11 @@ class QuanLyBaiViet extends Controller
     }
     public function save_baiviet(Request $request){
        $this->AuthLogin();
+       $time=Carbon::now('Asia/Ho_Chi_Minh');
        $data = array();
        $data['baiviet_name'] = $request->baiviet_name; 
-       $data['baiviet_noidung'] = $request->baiviet_noidung; 
+       $data['baiviet_noidung'] = $request->baiviet_noidung;
+       $data['created_at'] = $time;  
        $id_cmt= DB::table('tbl_baiviet')->insertGetId($data);
 
        $get_image = $request->file('baiviet_image');
@@ -85,7 +88,7 @@ class QuanLyBaiViet extends Controller
         DB::table('tbl_baiviet')->where('baiviet_id',$baiviet_id)->update($data);
         Session::put('message','Đã sửa thành công');
         return Redirect::to('all-baiviet');
-    }
+    }   
     public function delete_baiviet($baiviet_id){
         $this->AuthLogin();
         $get_hinh = DB::table('tbl_hinhanh')->where('id_baiviet',$baiviet_id)->get();
@@ -106,7 +109,17 @@ class QuanLyBaiViet extends Controller
     //end backend
     // Details
     public function details($baiviet_id){
-        return view('pages.baiviet.show_details');
+        $details_baiviet = DB::table('tbl_baiviet')->where('baiviet_id',$baiviet_id)
+        ->first();
+        $baiviet_moi = DB::table('tbl_baiviet')->orderBy('baiviet_id','Desc')->limit(3)
+        ->whereNotIn('baiviet_id', [$baiviet_id])
+        ->get();
+        $hinh = DB::table('tbl_hinhanh')->where('id_baiviet',$baiviet_id)->get();
+
+        return view('pages.baiviet.show_details')
+        ->with('hinh',$hinh)
+        ->with('baiviet_moi',$baiviet_moi)
+        ->with('baiviet_details',$details_baiviet);
     }
     public function all_hinh($id)
     {

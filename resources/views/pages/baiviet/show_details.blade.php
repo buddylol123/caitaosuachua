@@ -1,6 +1,5 @@
 @extends('welcome')
 @section('content')
-
 <!-- blog details part start -->
 <section class="blog-details section">
   <div class="container">
@@ -8,7 +7,20 @@
       <div class="col-lg-8">
         <article class="post">
           <div class="post-image">
-            <img class="img-fluid w-100" src="{{URL::to('public/frontend/images/post-1.jpg')}}" alt="post-image">
+           
+							
+							<ul id="imageGallery">
+								@foreach($hinh as $key=>$pic)
+								<li data-thumb="{{URL::to('public/upload/baiviet/'.$pic->hinh)}}" data-src="{{URL::to('public/upload/baiviet/'.$pic->hinh)}}">
+								  <img width="600px" height="500px" src="{{URL::to('public/upload/baiviet/'.$pic->hinh)}}"/>
+                
+								</li>
+							
+								@endforeach
+							  </ul>
+									
+					
+            
           </div>
           <!-- Post Content -->
           <div class="post-content">
@@ -24,16 +36,9 @@
                 <a href="#">30 likes</a>
               </li>
             </ul>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Sed ut perspiciatis unde omnis natus error sit voluptatem accusantium dolore mque laudantium totam rem aperiam
-              eaque ipsa quae ab illo inventore veritatis et quasi archite beatae vitae dicta sunt explicabo. nemo enim ipsam
-              voluptatem quia voluptassit.aspernatur aut odit aut fugit.</p>
-            <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt neque poro quisquam est, qui dolorem
-              ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
-              labore et dolore magnam aliquam quaerat voluptatem</p>
+            <h3>{{$baiviet_details->baiviet_name}}</h3>
             <!-- blockquote -->
-            <blockquote data-aos="fade-left" data-aos-duration="1000">Excepteur sint occaecat cupidatat non proi dent, sunt in culpa qui officia deserunt mollit anim iest.laborum.
-              sed perspiciatis unde omnis iste natus error voluptatem accusantium dolore mque laudantium.</blockquote>
+            <blockquote data-aos="fade-left" data-aos-duration="1000">{{$baiviet_details->baiviet_noidung}}</blockquote>
             <p>Occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Seper spiciatis
               unde omnis natus error sit voluptatem accusantium doloremque laudantium totam rem. aperiam eaque ipsa quae
               ab illo inventore veritatis.</p>
@@ -64,65 +69,48 @@
           </div>
         </article>
       </div>
+
       <div class="col-lg-4">
         <!-- sidebar -->
         <aside class="sidebar">
-          <div class="widget-search widget">
-            <form action="#">
-              <!-- Search bar -->
-              <input class="form-control" type="text" placeholder="Search..." name="search">
+          <!-- <div class="widget-search widget">
+            <form action="#"> -->
+              <!-- <input class="form-control" type="text" placeholder="Search..." name="search">
               <button type="submit" class="widget-search-btn">
                 <i class="tf-ion-ios-search"></i>
               </button>
             </form>
-          </div>
-          <div class="widget-categories widget">
-            <h2>Categories</h2>
-           
-          </div>
+          </div> -->
           <div class="widget-post widget">
-            <h2>Latest Post</h2>
+            <h2>Bài viết mới nhất</h2>
             <!-- latest post -->
+           
             <ul class="widget-post-list">
+              @foreach($baiviet_moi as $bv)
+              @php
+              $img = DB::table('tbl_hinhanh')->where('id_baiviet',$bv->baiviet_id)->first();
+         
+        
+             @endphp
               <li class="widget-post-list-item">
+               
                 <div class="widget-post-image">
-                  <a href="single-post.html">
-                    <img src="{{URL::to('public/frontend/images/post-1.jpg')}}" alt="post-img">
+                  <a href="{{URL::to('/chi-tiet/'.$bv->baiviet_id)}}">
+                    @if($img)
+                    <img  src="{{URL::to('public/upload/baiviet/'.$img->hinh)}}" class="img-fluid" >
+                    @else
+                    <img src="{{URL::to('public/frontend/images/not-available.jpg')}}" alt="" class="img-fluid">
+                    @endif
                   </a>
                 </div>
                 <div class="widget-post-content">
-                  <a href="single-post.html">
-                    <h5>Condentum Quam Vitae Ligu. tempor bibendum.</h5>
+                  <a href="{{URL::to('/chi-tiet/'.$bv->baiviet_id)}}">
+                    <h5>{{ $bv->baiviet_name }}</h5>
                   </a>
-                  <h6>Aug 20, 2018</h6>
+                  <h6>{{ $bv->created_at }}</h6>
                 </div>
               </li>
-              <li class="widget-post-list-item">
-                <div class="widget-post-image">
-                  <a href="single-post.html">
-                    <img src="{{URL::to('public/frontend/images/post-2.jpg')}}" alt="post-img">
-                  </a>
-                </div>
-                <div class="widget-post-content">
-                  <a href="single-post.html">
-                    <h5>Condentum Quam Vitae Ligu. tempor bibendum.</h5>
-                  </a>
-                  <h6>Aug 20, 2018</h6>
-                </div>
-              </li>
-              <li class="widget-post-list-item">
-                <div class="widget-post-image">
-                  <a href="single-post.html">
-                    <img src="{{URL::to('public/frontend/images/post-3.jpg')}}" alt="post-img">
-                  </a>
-                </div>
-                <div class="widget-post-content">
-                  <a href="single-post.html">
-                    <h5>Condentum Quam Vitae Ligu. tempor bibendum.</h5>
-                  </a>
-                  <h6>Aug 20, 2018</h6>
-                </div>
-              </li>
+              @endforeach
             </ul>
           </div>
         </aside>

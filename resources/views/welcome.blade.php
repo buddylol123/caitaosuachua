@@ -29,7 +29,9 @@
   <link rel="stylesheet" href="{{asset('public/frontend/plugins/slick/slick.css')}}">
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{{asset('public/frontend/css/style.css')}}">  
-
+  <link href="{{asset('public/frontend/css/lightslider.css')}}" rel="stylesheet">
+  <link href="{{asset('public/frontend/css/prettify.css')}}" rel="stylesheet">
+  <link href="{{asset('public/frontend/css/lightgallery.min.css')}}" rel="stylesheet">
 </head>
 
 <body id="body">
@@ -206,12 +208,36 @@ Start About Section
         </div> --}}
         <div class="col-sm-4 col-md-4 col-lg-4">
           <ul>
-            <li>
-            <button  onclick="show1()">Trụ sở chính</button>
-            <button onclick="show2()">Quận 7</button>
-            <button onclick="show3()">Quận 7</button>
-            </li>
+        <div style="margin-bottom: 20px">
+            <button style="  background-color:black;
+            height: 40px;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 11px;" onclick="show1()">Trụ sở chính</button>
+            <button style="  background-color:black; /* Green */
+            border: none;
+            height: 40px;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 11px;" onclick="show2()">Quận 7</button>
+            <button style="  background-color:black; /* Green */
+            border: none;
+            color: white;
+            height: 40px;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display:inline-block;
+            font-size: 11px;" onclick="show3()">Quận 7</button>
   
+        </div>
             <div id="map1" style="width:200px;height:200px;">
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.9540678643425!2d106.67567691480046!3d10.738023592347597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fad027e3727%3A0x2a77b414e887f86d!2zMTgwIMSQLiBDYW8gTOG7lywgUGjGsOG7nW5nIDQsIFF14bqtbiA4LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1sen!2s!4v1642402302996!5m2!1sen!2s" 
 							width="200px" height="100px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -223,6 +249,7 @@ Start About Section
             <div id="map3" style="display: none">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6752602435636!2d106.67791001428681!3d10.759491462449397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1cefa4b079%3A0x5b05cd310facba83!2zMjIzIFRy4bqnbiBCw6xuaCBUcuG7jW5nLCBQaMaw4budbmcgMywgUXXhuq1uIDUsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1643363082469!5m2!1sen!2s" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             <div>
+         
           </ul>
         </div>
         
@@ -268,10 +295,29 @@ Start About Section
     <script src="{{asset('public/frontend/plugins/filterizr/jquery.filterizr.min.js')}}"></script>
     <!-- Smooth Scroll js -->
     <script src="{{asset('public/frontend/plugins/smooth-scroll/smooth-scroll.min.js')}}"></script>
-    
+    <script src="{{asset('public/frontend/plugins/lightgallery-all.min.js')}}"></script>
+    <script src="{{asset('public/frontend/plugins/prettify.js')}}"></script>
+    <script src="{{asset('public/frontend/plugins/lightslider.js')}}"></script>
     <!-- Custom js -->
     <script src="{{asset('public/frontend/js/script.js')}}"></script>
-     
+    <script type="text/javascript">
+      $(document).ready(function() {
+$('#imageGallery').lightSlider({
+  gallery:true,
+  item:1,
+  loop:true,
+  thumbItem:3,
+  slideMargin:0,
+  enableDrag: false,
+  currentPagerPosition:'left',
+  onSliderLoad: function(el) {
+      el.lightGallery({
+          selector: '#imageGallery .lslide'
+      });
+  }   
+});  
+});
+      </script>
   </body>
   </html>
 
